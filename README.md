@@ -5,7 +5,7 @@ Benchmark do **TPC-DS em escala 1 TB** (`scale factor 1000`) executado sobre um
 formas — **paralela** (todas ao mesmo tempo) e **serial** (uma por vez, em ordem)
 — e registra o tempo de cada execução em uma tabela de resultados.
 
-Workspace de referência: `https://fevm-jsf-demo.cloud.databricks.com/`
+Workspace de referência: `https://e2-demo-field-eng.cloud.databricks.com/`
 
 ---
 
