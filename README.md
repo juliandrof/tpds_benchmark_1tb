@@ -20,8 +20,14 @@ tpds_benchmark_1tb/
 ├── 04_cleanup.py          # apaga catálogo + warehouse (NÃO faz parte de job)
 ├── queries_databricks/    # 103 queries no dialeto Databricks (Spark SQL)
 ├── queries_redshift/      # 103 queries adaptadas para Amazon Redshift
+├── redshift/              # benchmark equivalente no Redshift (orquestrado do Databricks)
 └── README.md
 ```
+
+> **Benchmark no Redshift:** a pasta [`redshift/`](redshift/README.md) contém a
+> trilha equivalente — carrega as managed tables no Redshift (via S3 + `COPY`) e
+> roda as mesmas 103 queries em paralelo e serial. Requer um endpoint Redshift
+> (ainda **não testado**). Veja `redshift/README.md`.
 
 > **Sobre os dados / pasta `dados`:** o benchmark usa a base *built-in*
 > `samples.tpcds_sf1000` (~1 TB), disponível em qualquer workspace Databricks.
