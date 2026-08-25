@@ -39,7 +39,7 @@ tpds_benchmark_1tb/
 | Schema | `benchmark` | dentro de `tpds1tb` |
 | Managed tables | 24 tabelas TPC-DS | cópia de `samples.tpcds_sf1000` (~1 TB) |
 | Tabela de resultados | `tpds1tb.benchmark.bench_results` | tempos de cada execução |
-| SQL Warehouse | `BenchDatabricks` | **Serverless**, tamanho `Small`, autoscale **1 → 10** clusters |
+| SQL Warehouse | `BenchDatabricks` | **Serverless**, tamanho `Large`, autoscale **1 → 10** clusters |
 
 ### Tabela `bench_results`
 
@@ -63,7 +63,7 @@ importar o repositório como uma **Git Folder** no Databricks
 ### 1. `00_setup`
 Cria catálogo, schema, materializa as ~1 TB de tabelas e cria o warehouse.
 > ⏱️ **É a etapa mais demorada e cara** — copia ~1 TB. Rode em compute
-> serverless de notebook. Ajuste `WH_CLUSTER_SIZE` se quiser um warehouse maior.
+> serverless de notebook. Ajuste `WH_CLUSTER_SIZE` se quiser outro tamanho de warehouse.
 
 ### 2. `02_parallel_exec`
 Dispara as **103 queries simultaneamente** contra o `BenchDatabricks`. Uma
