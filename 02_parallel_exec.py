@@ -108,9 +108,15 @@ for r in results:
 
 # COMMAND ----------
 
-from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType, LongType
+
+# ID incremental do disparo: mesmo valor para as 103 queries desta execução
+EXECUTION_ID = (spark.sql(f"SELECT coalesce(max(execution_id), 0) + 1 AS next_id FROM {CATALOG}.{SCHEMA}.bench_results")
+                     .collect()[0]["next_id"])
+print(f"execution_id desta execução: {EXECUTION_ID}")
 
 schema = StructType([
+    StructField("execution_id",       LongType()),
     StructField("tp_exec",            StringType()),
     StructField("sql_warehouse_size", StringType()),
     StructField("file_name",          StringType()),
@@ -119,16 +125,17 @@ schema = StructType([
     StructField("duration",           DoubleType()),
 ])
 
-rows = [(TP_EXEC, WAREHOUSE_SIZE, r["file_name"], r["start"], r["end"], r["duration"]) for r in results]
+rows = [(EXECUTION_ID, TP_EXEC, WAREHOUSE_SIZE, r["file_name"], r["start"], r["end"], r["duration"]) for r in results]
 (spark.createDataFrame(rows, schema)
       .write.mode("append").saveAsTable(f"{CATALOG}.{SCHEMA}.bench_results"))
 
-print(f"{len(rows)} linhas gravadas em {CATALOG}.{SCHEMA}.bench_results (tp_exec='{TP_EXEC}').")
+print(f"{len(rows)} linhas gravadas em {CATALOG}.{SCHEMA}.bench_results (execution_id={EXECUTION_ID}, tp_exec='{TP_EXEC}').")
 display(spark.sql(f"""
-    SELECT tp_exec, sql_warehouse_size, count(*) AS n_queries,
+    SELECT execution_id, tp_exec, sql_warehouse_size, count(*) AS n_queries,
            round(sum(duration),1) AS soma_seg, round(avg(duration),2) AS media_seg,
            round(max(duration),2) AS max_seg
     FROM {CATALOG}.{SCHEMA}.bench_results
-    WHERE tp_exec = '{TP_EXEC}'
-    GROUP BY tp_exec, sql_warehouse_size
+    WHERE tp_exec = '{TP_EXEC}' AND execution_id = {EXECUTION_ID}
+    GROUP BY execution_id, tp_exec, sql_warehouse_size
+    ORDER BY execution_id
 """))

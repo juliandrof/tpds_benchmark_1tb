@@ -85,6 +85,7 @@ print("\nTodas as managed tables foram criadas.")
 
 spark.sql(f"""
     CREATE TABLE IF NOT EXISTS {CATALOG}.{SCHEMA}.bench_results (
+        execution_id        BIGINT     COMMENT 'id incremental do disparo (mesmo para as 103 queries de uma execução)',
         tp_exec             STRING     COMMENT 'parallel ou serial',
         sql_warehouse_size  STRING     COMMENT 'tamanho do cluster do warehouse (dinâmico)',
         file_name           STRING     COMMENT 'nome do arquivo .sql executado',
@@ -93,6 +94,10 @@ spark.sql(f"""
         duration            DOUBLE     COMMENT 'segundos entre start e end'
     )
 """)
+# Garante a coluna em tabelas pré-existentes (idempotente)
+cols = [f.name for f in spark.table(f"{CATALOG}.{SCHEMA}.bench_results").schema]
+if "execution_id" not in cols:
+    spark.sql(f"ALTER TABLE {CATALOG}.{SCHEMA}.bench_results ADD COLUMNS (execution_id BIGINT COMMENT 'id incremental do disparo (mesmo para as 103 queries de uma execução)')")
 print(f"OK: {CATALOG}.{SCHEMA}.bench_results criada/existente.")
 
 # COMMAND ----------
