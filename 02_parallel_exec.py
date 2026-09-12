@@ -12,7 +12,7 @@
 CATALOG        = "tpcds1tb"
 SCHEMA         = "benchmark"
 WAREHOUSE_NAME = "BenchDatabricks"
-QUERIES_SUBDIR = "01_queries"
+QUERIES_SUBDIR = "queries_databricks"
 TP_EXEC        = "parallel"
 
 # COMMAND ----------
