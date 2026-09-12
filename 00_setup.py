@@ -3,7 +3,7 @@
 # MAGIC # 00_setup — Provisionamento do Benchmark TPC-DS 1 TB
 # MAGIC
 # MAGIC Este notebook cria toda a infraestrutura do benchmark:
-# MAGIC 1. Catálogo `tpds1tb`
+# MAGIC 1. Catálogo `tpcds1tb`
 # MAGIC 2. Schema `benchmark`
 # MAGIC 3. Managed tables (cópia de `samples.tpcds_sf1000` — ~1 TB)
 # MAGIC 4. Tabela de resultados `bench_results`
@@ -18,7 +18,7 @@
 
 # COMMAND ----------
 
-CATALOG        = "tpds1tb"
+CATALOG        = "tpcds1tb"
 SCHEMA         = "benchmark"
 SOURCE         = "samples.tpcds_sf1000"   # base sample de 1 TB (built-in)
 WAREHOUSE_NAME = "BenchDatabricks"
@@ -59,7 +59,7 @@ for t in sorted(source_tables):
 
 # MAGIC %md ## 3. Managed tables (~1 TB) — CTAS a partir da sample
 # MAGIC
-# MAGIC Cada tabela é recriada como *managed table* dentro de `tpds1tb.benchmark`.
+# MAGIC Cada tabela é recriada como *managed table* dentro de `tpcds1tb.benchmark`.
 # MAGIC A etapa é sequencial e imprime a contagem de linhas de cada tabela.
 
 # COMMAND ----------

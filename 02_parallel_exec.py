@@ -5,11 +5,11 @@
 # MAGIC Dispara **todas as 103 queries ao mesmo tempo** contra o warehouse
 # MAGIC `BenchDatabricks`. Não há lotes: uma `threading.Barrier` garante que todas
 # MAGIC as threads submetam a query no mesmo instante. Cada resultado é gravado em
-# MAGIC `tpds1tb.benchmark.bench_results` com `tp_exec = 'parallel'`.
+# MAGIC `tpcds1tb.benchmark.bench_results` com `tp_exec = 'parallel'`.
 
 # COMMAND ----------
 
-CATALOG        = "tpds1tb"
+CATALOG        = "tpcds1tb"
 SCHEMA         = "benchmark"
 WAREHOUSE_NAME = "BenchDatabricks"
 QUERIES_SUBDIR = "01_queries"

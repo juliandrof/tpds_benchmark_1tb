@@ -1,7 +1,7 @@
 # Benchmark TPC-DS 1 TB no Amazon Redshift (orquestrado a partir do Databricks)
 
 Replica o benchmark do Databricks no **Amazon Redshift**, movendo os dados das
-*managed tables* `tpds1tb.benchmark.*` para o Redshift e rodando as **mesmas 103
+*managed tables* `tpcds1tb.benchmark.*` para o Redshift e rodando as **mesmas 103
 queries** (versão `queries_redshift/`) de forma **paralela** e **serial**.
 
 > ⚠️ **Estes notebooks não foram testados** — não havia um endpoint Redshift
@@ -104,7 +104,7 @@ rs = (spark.read.format("redshift")
         .option("aws_iam_role", "<arn>")
         .option("dbtable", "benchmark.bench_results").load())
 
-(spark.table("tpds1tb.benchmark.bench_results").withColumn("engine", lit("databricks"))
+(spark.table("tpcds1tb.benchmark.bench_results").withColumn("engine", lit("databricks"))
    .unionByName(rs.withColumn("engine", lit("redshift")))
  ).createOrReplaceTempView("bench_all")
 

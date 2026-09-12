@@ -12,7 +12,7 @@ Workspace de referência: `https://e2-demo-field-eng.cloud.databricks.com/`
 ## 📦 Estrutura do repositório
 
 ```
-tpds_benchmark_1tb/
+tpcds_benchmark_1tb/
 ├── 00_setup.py            # cria catálogo, schema, tabelas (~1 TB) e warehouse
 ├── 01_queries/            # 103 queries .sql (dialeto Databricks) — lidas pelos notebooks
 ├── 02_parallel_exec.py    # dispara TODAS as queries ao mesmo tempo
@@ -33,7 +33,7 @@ tpds_benchmark_1tb/
 > `samples.tpcds_sf1000` (~1 TB), disponível em qualquer workspace Databricks.
 > Por isso **não** há arquivos `.parquet` versionados no repositório — 1 TB não
 > cabe no GitHub (limite de 100 MB por arquivo). O `00_setup` copia os dados
-> direto da sample para as *managed tables* de `tpds1tb.benchmark`.
+> direto da sample para as *managed tables* de `tpcds1tb.benchmark`.
 
 ---
 
@@ -41,10 +41,10 @@ tpds_benchmark_1tb/
 
 | Recurso | Nome | Detalhe |
 |---|---|---|
-| Catálogo | `tpds1tb` | Unity Catalog |
-| Schema | `benchmark` | dentro de `tpds1tb` |
+| Catálogo | `tpcds1tb` | Unity Catalog |
+| Schema | `benchmark` | dentro de `tpcds1tb` |
 | Managed tables | 24 tabelas TPC-DS | cópia de `samples.tpcds_sf1000` (~1 TB) |
-| Tabela de resultados | `tpds1tb.benchmark.bench_results` | tempos de cada execução |
+| Tabela de resultados | `tpcds1tb.benchmark.bench_results` | tempos de cada execução |
 | SQL Warehouse | `BenchDatabricks` | **Serverless**, tamanho `Large`, autoscale **1 → 10** clusters |
 
 ### Tabela `bench_results`
@@ -90,19 +90,19 @@ SELECT tp_exec,
        round(sum(duration), 1) AS tempo_total_seg,
        round(avg(duration), 2) AS media_seg,
        round(max(duration), 2) AS mais_lenta_seg
-FROM tpds1tb.benchmark.bench_results
+FROM tpcds1tb.benchmark.bench_results
 GROUP BY tp_exec, sql_warehouse_size
 ORDER BY tp_exec;
 
 -- Top 10 queries mais lentas
 SELECT tp_exec, file_name, duration
-FROM tpds1tb.benchmark.bench_results
+FROM tpcds1tb.benchmark.bench_results
 ORDER BY duration DESC
 LIMIT 10;
 ```
 
 ### 5. `04_cleanup` (opcional, **fora de qualquer job**)
-Apaga o catálogo `tpds1tb` (com dados) e deleta o warehouse. Por segurança é
+Apaga o catálogo `tpcds1tb` (com dados) e deleta o warehouse. Por segurança é
 preciso editar a célula e definir `CONFIRMAR = True` antes de rodar.
 
 ---

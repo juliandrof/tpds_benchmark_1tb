@@ -4,11 +4,11 @@
 # MAGIC
 # MAGIC Executa as queries **em ordem (q1 → q99)**, uma de cada vez: a próxima só
 # MAGIC começa após a anterior terminar. Cada resultado é gravado em
-# MAGIC `tpds1tb.benchmark.bench_results` com `tp_exec = 'serial'`.
+# MAGIC `tpcds1tb.benchmark.bench_results` com `tp_exec = 'serial'`.
 
 # COMMAND ----------
 
-CATALOG        = "tpds1tb"
+CATALOG        = "tpcds1tb"
 SCHEMA         = "benchmark"
 WAREHOUSE_NAME = "BenchDatabricks"
 QUERIES_SUBDIR = "01_queries"

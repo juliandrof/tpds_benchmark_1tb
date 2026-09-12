@@ -3,7 +3,7 @@
 # MAGIC # redshift/00_setup — Carga das tabelas TPC-DS no Redshift (a partir do Databricks)
 # MAGIC
 # MAGIC Orquestrado **de dentro do Databricks**. Fluxo:
-# MAGIC 1. Lê as *managed tables* de `tpds1tb.benchmark` (Delta em S3)
+# MAGIC 1. Lê as *managed tables* de `tpcds1tb.benchmark` (Delta em S3)
 # MAGIC 2. **Unload** de cada tabela para o S3 de staging em **Parquet**
 # MAGIC 3. Cria schema + tabelas no Redshift (DDL gerado do schema real, com DISTKEY/SORTKEY)
 # MAGIC 4. **COPY** de cada tabela do S3 → Redshift
@@ -24,7 +24,7 @@
 # COMMAND ----------
 
 # ----- Origem (Databricks) -----
-SRC_CATALOG = "tpds1tb"
+SRC_CATALOG = "tpcds1tb"
 SRC_SCHEMA  = "benchmark"
 
 # ----- Redshift -----

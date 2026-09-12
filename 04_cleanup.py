@@ -2,14 +2,14 @@
 # MAGIC %md
 # MAGIC # 04_cleanup — Remoção de todos os recursos
 # MAGIC
-# MAGIC **⚠️ Destrutivo.** Apaga o catálogo `tpds1tb` (schema + managed tables +
+# MAGIC **⚠️ Destrutivo.** Apaga o catálogo `tpcds1tb` (schema + managed tables +
 # MAGIC dados) e deleta o SQL Warehouse `BenchDatabricks`.
 # MAGIC
 # MAGIC Este notebook **NÃO** deve fazer parte de nenhum job — execução manual.
 
 # COMMAND ----------
 
-CATALOG        = "tpds1tb"
+CATALOG        = "tpcds1tb"
 WAREHOUSE_NAME = "BenchDatabricks"
 
 # Trava de segurança: mude para True para confirmar a exclusão
