@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_id,
   ca_country,
@@ -26,3 +31,5 @@ WHERE cs_sold_date_sk = d_date_sk AND
 GROUP BY ROLLUP (i_item_id, ca_country, ca_state, ca_county)
 ORDER BY ca_country, ca_state, ca_county, i_item_id
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   dt.d_year,
   item.i_brand_id brand_id,
@@ -11,3 +16,5 @@ WHERE dt.d_date_sk = store_sales.ss_sold_date_sk
 GROUP BY dt.d_year, item.i_brand, item.i_brand_id
 ORDER BY dt.d_year, sum_agg DESC, brand_id
 LIMIT 100
+;
+END

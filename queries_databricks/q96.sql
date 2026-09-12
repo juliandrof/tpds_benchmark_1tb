@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT count(*)
 FROM store_sales, household_demographics, time_dim, store
 WHERE ss_sold_time_sk = time_dim.t_time_sk
@@ -9,3 +14,5 @@ WHERE ss_sold_time_sk = time_dim.t_time_sk
   AND store.s_store_name = 'ese'
 ORDER BY count(*)
 LIMIT 100
+;
+END

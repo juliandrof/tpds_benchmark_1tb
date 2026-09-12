@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT *
 FROM
   (SELECT count(*) h8_30_to_9
@@ -120,3 +125,5 @@ FROM
       (household_demographics.hd_dep_count = 0 AND
         household_demographics.hd_vehicle_count <= 0 + 2))
     AND store.s_store_name = 'ese') s8
+;
+END

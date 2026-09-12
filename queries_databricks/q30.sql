@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH customer_total_return AS
 (SELECT
     wr_returning_customer_sk AS ctr_customer_sk,
@@ -33,3 +38,5 @@ ORDER BY c_customer_id, c_salutation, c_first_name, c_last_name, c_preferred_cus
   , c_birth_day, c_birth_month, c_birth_year, c_birth_country, c_login, c_email_address
   , c_last_review_date, ctr_total_return
 LIMIT 100
+;
+END

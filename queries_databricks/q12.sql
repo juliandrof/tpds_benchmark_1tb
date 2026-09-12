@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_desc,
   i_category,
@@ -20,3 +25,5 @@ GROUP BY
 ORDER BY
   i_category, i_class, i_item_id, i_item_desc, revenueratio
 LIMIT 100
+;
+END

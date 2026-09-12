@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH ss AS
 (SELECT
     s_store_sk,
@@ -98,3 +103,5 @@ FROM
 GROUP BY ROLLUP (channel, id)
 ORDER BY channel, id
 LIMIT 100
+;
+END

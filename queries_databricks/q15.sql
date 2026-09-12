@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   ca_zip,
   sum(cs_sales_price)
@@ -13,3 +18,5 @@ WHERE cs_bill_customer_sk = c_customer_sk
 GROUP BY ca_zip
 ORDER BY ca_zip
 LIMIT 100
+;
+END

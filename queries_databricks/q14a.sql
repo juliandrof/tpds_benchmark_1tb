@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH cross_items AS
 (SELECT i_item_sk ss_item_sk
   FROM item,
@@ -118,3 +123,5 @@ FROM (
 GROUP BY ROLLUP (channel, i_brand_id, i_class_id, i_category_id)
 ORDER BY channel, i_brand_id, i_class_id, i_category_id
 LIMIT 100
+;
+END

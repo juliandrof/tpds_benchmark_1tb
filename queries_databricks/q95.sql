@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH ws_wh AS
 (SELECT
     ws1.ws_order_number,
@@ -27,3 +32,5 @@ WHERE
   WHERE wr_order_number = ws_wh.ws_order_number)
 ORDER BY count(DISTINCT ws_order_number)
 LIMIT 100
+;
+END

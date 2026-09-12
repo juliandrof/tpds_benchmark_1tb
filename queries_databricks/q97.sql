@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH ssci AS (
   SELECT
     ss_customer_sk customer_sk,
@@ -28,3 +33,5 @@ FROM ssci
   FULL OUTER JOIN csci ON (ssci.customer_sk = csci.customer_sk
     AND ssci.item_sk = csci.item_sk)
 LIMIT 100
+;
+END

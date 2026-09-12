@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH ss AS
 (SELECT
     ca_county,
@@ -58,3 +63,5 @@ WHERE
     THEN ss3.store_sales / ss2.store_sales
       ELSE NULL END
 ORDER BY ss1.ca_county
+;
+END

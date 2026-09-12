@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH my_customers AS (
   SELECT DISTINCT
     c_customer_sk,
@@ -59,3 +64,5 @@ FROM segments
 GROUP BY segment
 ORDER BY segment, num_customers
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   count(DISTINCT cs_order_number) AS `order count `,
   sum(cs_ext_ship_cost) AS `total shipping cost `,
@@ -21,3 +26,5 @@ WHERE
                    WHERE cs1.cs_order_number = cr1.cr_order_number)
 ORDER BY count(DISTINCT cs_order_number)
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT *
 FROM (SELECT
   avg(ss_list_price) B1_LP,
@@ -54,3 +59,5 @@ WHERE ss_quantity BETWEEN 0 AND 5
     OR ss_coupon_amt BETWEEN 7326 AND 7326 + 1000
     OR ss_wholesale_cost BETWEEN 7 AND 7 + 20)) B6
 LIMIT 100
+;
+END

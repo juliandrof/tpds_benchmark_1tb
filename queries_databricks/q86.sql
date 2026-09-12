@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   sum(ws_net_paid) AS total_sum,
   i_category,
@@ -22,3 +27,5 @@ ORDER BY
     THEN i_category END,
   rank_within_parent
 LIMIT 100
+;
+END

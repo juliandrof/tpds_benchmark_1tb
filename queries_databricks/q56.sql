@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH ss AS (
   SELECT
     i_item_id,
@@ -63,3 +68,5 @@ FROM (SELECT *
 GROUP BY i_item_id
 ORDER BY total_sales
 LIMIT 100
+;
+END

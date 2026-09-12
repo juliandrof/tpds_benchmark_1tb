@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   sum(ss_net_profit) AS total_sum,
   s_state,
@@ -36,3 +41,5 @@ ORDER BY
   THEN s_state END
   , rank_within_parent
 LIMIT 100
+;
+END

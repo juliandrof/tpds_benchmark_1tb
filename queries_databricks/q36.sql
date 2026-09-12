@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   sum(ss_net_profit) / sum(ss_ext_sales_price) AS gross_margin,
   i_category,
@@ -24,3 +29,5 @@ ORDER BY
   THEN i_category END
   , rank_within_parent
 LIMIT 100
+;
+END

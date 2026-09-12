@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH frequent_ss_items AS
 (SELECT
     substr(i_item_desc, 1, 30) itemdesc,
@@ -51,3 +56,5 @@ FROM best_ss_customer))
         AND ws_bill_customer_sk IN (SELECT c_customer_sk
       FROM best_ss_customer))) y
 LIMIT 100
+;
+END

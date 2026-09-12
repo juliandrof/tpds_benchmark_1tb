@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   substr(w_warehouse_name, 1, 20),
   sm_type,
@@ -32,3 +37,5 @@ GROUP BY
   substr(w_warehouse_name, 1, 20), sm_type, cc_name
 ORDER BY substr(w_warehouse_name, 1, 20), sm_type, cc_name
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH customer_total_return AS
 ( SELECT
     sr_customer_sk AS ctr_customer_sk,
@@ -17,3 +22,5 @@ WHERE ctr1.ctr_total_return >
   AND ctr1.ctr_customer_sk = c_customer_sk
 ORDER BY c_customer_id
 LIMIT 100
+;
+END

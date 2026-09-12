@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_desc,
   i_category,
@@ -16,3 +21,5 @@ AND (cast('1999-02-22' AS DATE) + INTERVAL 30 days)
 GROUP BY i_item_id, i_item_desc, i_category, i_class, i_current_price
 ORDER BY i_category, i_class, i_item_id, i_item_desc, revenueratio
 LIMIT 100
+;
+END

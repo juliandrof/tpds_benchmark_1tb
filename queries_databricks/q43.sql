@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   s_store_name,
   s_store_id,
@@ -31,3 +36,5 @@ GROUP BY s_store_name, s_store_id
 ORDER BY s_store_name, s_store_id, sun_sales, mon_sales, tue_sales, wed_sales,
   thu_sales, fri_sales, sat_sales
 LIMIT 100
+;
+END

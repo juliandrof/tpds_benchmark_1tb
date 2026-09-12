@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT sum(cs_ext_discount_amt) AS `excess discount amount`
 FROM
   catalog_sales, item, date_dim
@@ -13,3 +18,5 @@ WHERE
       AND d_date BETWEEN '2000-01-27' AND (cast('2000-01-27' AS DATE) + interval 90 days)
       AND d_date_sk = cs_sold_date_sk)
 LIMIT 100
+;
+END

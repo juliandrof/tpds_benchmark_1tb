@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   'web' AS channel,
   web.item,
@@ -124,3 +129,5 @@ FROM (
 WHERE (store.return_rank <= 10 OR store.currency_rank <= 10)
 ORDER BY 1, 4, 5
 LIMIT 100
+;
+END

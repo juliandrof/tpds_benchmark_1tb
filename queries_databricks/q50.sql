@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   s_store_name,
   s_company_id,
@@ -45,3 +50,5 @@ ORDER BY
   s_store_name, s_company_id, s_street_number, s_street_name, s_street_type,
   s_suite_number, s_city, s_county, s_state, s_zip
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   c_customer_id AS customer_id,
   concat(c_last_name, ', ', c_first_name) AS customername
@@ -17,3 +22,5 @@ WHERE ca_city = 'Edgewood'
   AND sr_cdemo_sk = cd_demo_sk
 ORDER BY c_customer_id
 LIMIT 100
+;
+END

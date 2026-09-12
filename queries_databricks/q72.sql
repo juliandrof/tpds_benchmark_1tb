@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_desc,
   w_warehouse_name,
@@ -31,3 +36,5 @@ WHERE d1.d_week_seq = d2.d_week_seq
 GROUP BY i_item_desc, w_warehouse_name, d1.d_week_seq
 ORDER BY total_cnt DESC, i_item_desc, w_warehouse_name, d_week_seq
 LIMIT 100
+;
+END

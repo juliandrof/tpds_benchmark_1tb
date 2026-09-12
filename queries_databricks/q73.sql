@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   c_last_name,
   c_first_name,
@@ -28,3 +33,5 @@ FROM
 WHERE ss_customer_sk = c_customer_sk
   AND cnt BETWEEN 1 AND 5
 ORDER BY cnt DESC
+;
+END

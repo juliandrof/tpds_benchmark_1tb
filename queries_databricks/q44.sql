@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   asceding.rnk,
   i1.i_product_name best_performing,
@@ -44,3 +49,5 @@ WHERE asceding.rnk = descending.rnk
   AND i2.i_item_sk = descending.item_sk
 ORDER BY asceding.rnk
 LIMIT 100
+;
+END

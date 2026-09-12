@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   ca_zip,
   ca_city,
@@ -19,3 +24,5 @@ WHERE ws_bill_customer_sk = c_customer_sk
 GROUP BY ca_zip, ca_city
 ORDER BY ca_zip, ca_city
 LIMIT 100
+;
+END

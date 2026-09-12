@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   c_last_name,
   c_first_name,
@@ -30,3 +35,5 @@ WHERE ss_customer_sk = c_customer_sk
   AND current_addr.ca_city <> bought_city
 ORDER BY c_last_name, c_first_name, ca_city, bought_city, ss_ticket_number
 LIMIT 100
+;
+END

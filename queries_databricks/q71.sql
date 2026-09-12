@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_brand_id brand_id,
   i_brand brand,
@@ -42,3 +47,5 @@ WHERE
     AND (t_meal_time = 'breakfast' OR t_meal_time = 'dinner')
 GROUP BY i_brand, i_brand_id, t_hour, t_minute
 ORDER BY ext_price DESC, brand_id
+;
+END

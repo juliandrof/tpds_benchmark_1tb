@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   promotions,
   total,
@@ -31,3 +36,5 @@ FROM
     AND d_moy = 11) all_sales
 ORDER BY promotions, total
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH v1 AS (
   SELECT
     i_category,
@@ -61,3 +66,5 @@ WHERE d_year = 1999 AND
   ELSE NULL END > 0.1
 ORDER BY sum_sales - avg_monthly_sales, 3
 LIMIT 100
+;
+END

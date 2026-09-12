@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH web_v1 AS (
   SELECT
     ws_item_sk item_sk,
@@ -53,3 +58,5 @@ FROM web_v1 web FULL OUTER JOIN store_v1 store ON (web.item_sk = store.item_sk
 WHERE web_cumulative > store_cumulative
 ORDER BY item_sk, d_date
 LIMIT 100
+;
+END

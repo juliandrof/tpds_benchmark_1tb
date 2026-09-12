@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT count(*)
 FROM (
        SELECT DISTINCT
@@ -28,3 +33,5 @@ FROM (
          AND d_month_seq BETWEEN 1200 AND 1200 + 11
      ) hot_cust
 LIMIT 100
+;
+END

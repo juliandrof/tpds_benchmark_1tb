@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   cc_call_center_id Call_Center,
   cc_name Call_Center_Name,
@@ -21,3 +26,5 @@ WHERE
     AND ca_gmt_offset = -7
 GROUP BY cc_call_center_id, cc_name, cc_manager, cd_marital_status, cd_education_status
 ORDER BY sum(cr_net_loss) DESC
+;
+END

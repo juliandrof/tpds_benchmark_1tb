@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH all_sales AS (
   SELECT
     d_year,
@@ -74,3 +79,5 @@ WHERE curr_yr.i_brand_id = prev_yr.i_brand_id
   AND CAST(curr_yr.sales_cnt AS DECIMAL(17, 2)) / CAST(prev_yr.sales_cnt AS DECIMAL(17, 2)) < 0.9
 ORDER BY sales_cnt_diff
 LIMIT 100
+;
+END

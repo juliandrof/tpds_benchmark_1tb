@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   w_state,
   i_item_id,
@@ -23,3 +28,5 @@ WHERE
 GROUP BY w_state, i_item_id
 ORDER BY w_state, i_item_id
 LIMIT 100
+;
+END

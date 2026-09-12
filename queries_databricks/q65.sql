@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   s_store_name,
   i_item_desc,
@@ -31,3 +36,5 @@ WHERE sb.ss_store_sk = sc.ss_store_sk AND
   i_item_sk = sc.ss_item_sk
 ORDER BY s_store_name, i_item_desc
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH frequent_ss_items AS
 (SELECT
     substr(i_item_desc, 1, 30) itemdesc,
@@ -66,3 +71,5 @@ GROUP BY c_last_name, c_first_name)
       GROUP BY c_last_name, c_first_name)) y
 ORDER BY c_last_name, c_first_name, sales
 LIMIT 100
+;
+END

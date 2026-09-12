@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_product_name,
   i_brand,
@@ -12,3 +17,5 @@ WHERE inv_date_sk = d_date_sk
 GROUP BY ROLLUP (i_product_name, i_brand, i_class, i_category)
 ORDER BY qoh, i_product_name, i_brand, i_class, i_category
 LIMIT 100
+;
+END

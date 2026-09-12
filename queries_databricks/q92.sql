@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT sum(ws_ext_discount_amt) AS `Excess Discount Amount `
 FROM web_sales, item, date_dim
 WHERE i_manufact_id = 350
@@ -14,3 +19,5 @@ WHERE i_manufact_id = 350
   )
 ORDER BY sum(ws_ext_discount_amt)
 LIMIT 100
+;
+END

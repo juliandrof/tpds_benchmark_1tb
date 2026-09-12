@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   substr(r_reason_desc, 1, 20),
   avg(ws_quantity),
@@ -80,3 +85,5 @@ ORDER BY substr(r_reason_desc, 1, 20)
   , avg(wr_refunded_cash)
   , avg(wr_fee)
 LIMIT 100
+;
+END

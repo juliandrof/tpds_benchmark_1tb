@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT *
 FROM (
        SELECT
@@ -28,3 +33,5 @@ WHERE CASE WHEN (avg_monthly_sales <> 0)
       ELSE NULL END > 0.1
 ORDER BY sum_sales - avg_monthly_sales, s_store_name
 LIMIT 100
+;
+END

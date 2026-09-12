@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH inv AS
 (SELECT
     w_warehouse_name,
@@ -45,3 +50,5 @@ WHERE inv1.i_item_sk = inv2.i_item_sk
   AND inv2.d_moy = 1 + 1
 ORDER BY inv1.w_warehouse_sk, inv1.i_item_sk, inv1.d_moy, inv1.mean, inv1.cov
   , inv2.d_moy, inv2.mean, inv2.cov
+;
+END

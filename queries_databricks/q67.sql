@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT *
 FROM
   (SELECT
@@ -36,3 +41,5 @@ ORDER BY
   i_category, i_class, i_brand, i_product_name, d_year,
   d_qoy, d_moy, s_store_id, sumsales, rk
 LIMIT 100
+;
+END

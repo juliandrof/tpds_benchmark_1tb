@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   avg(ss_quantity),
   avg(ss_ext_sales_price),
@@ -47,3 +52,5 @@ WHERE s_store_sk = ss_store_sk
     AND ca_state IN ('VA', 'TX', 'MS')
     AND ss_net_profit BETWEEN 50 AND 250
   ))
+;
+END

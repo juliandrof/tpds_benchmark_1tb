@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT cast(amc AS DECIMAL(15, 4)) / cast(pmc AS DECIMAL(15, 4)) am_pm_ratio
 FROM (SELECT count(*) amc
 FROM web_sales, household_demographics, time_dim, web_page
@@ -17,3 +22,5 @@ WHERE ws_sold_time_sk = time_dim.t_time_sk
     AND web_page.wp_char_count BETWEEN 5000 AND 5200) pt
 ORDER BY am_pm_ratio
 LIMIT 100
+;
+END

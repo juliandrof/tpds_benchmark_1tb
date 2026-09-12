@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   a.ca_state state,
   count(*) cnt
@@ -19,3 +24,5 @@ GROUP BY a.ca_state
 HAVING count(*) >= 10
 ORDER BY cnt
 LIMIT 100
+;
+END

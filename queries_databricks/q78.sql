@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH ws AS
 (SELECT
     d_year AS ws_sold_year,
@@ -62,3 +67,5 @@ ORDER BY
   other_chan_sales_price,
   round(ss_qty / (coalesce(ws_qty + cs_qty, 1)), 2)
 LIMIT 100
+;
+END

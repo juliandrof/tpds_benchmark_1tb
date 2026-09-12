@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH year_total AS (
   SELECT
     c_customer_id customer_id,
@@ -66,3 +71,5 @@ WHERE t_s_secyear.customer_id = t_s_firstyear.customer_id
     ELSE NULL END
 ORDER BY t_s_secyear.customer_preferred_cust_flag
 LIMIT 100
+;
+END

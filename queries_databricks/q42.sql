@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   dt.d_year,
   item.i_category_id,
@@ -16,3 +21,5 @@ ORDER BY sum(ss_ext_sales_price) DESC, dt.d_year
   , item.i_category_id
   , item.i_category
 LIMIT 100
+;
+END

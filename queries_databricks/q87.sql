@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT count(*)
 FROM ((SELECT DISTINCT
   c_last_name,
@@ -26,3 +31,5 @@ WHERE store_sales.ss_sold_date_sk = date_dim.d_date_sk
         AND web_sales.ws_bill_customer_sk = customer.c_customer_sk
         AND d_month_seq BETWEEN 1200 AND 1200 + 11)
      ) cool_cust
+;
+END

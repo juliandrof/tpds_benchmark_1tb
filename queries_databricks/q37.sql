@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_id,
   i_item_desc,
@@ -13,3 +18,5 @@ WHERE i_current_price BETWEEN 68 AND 68 + 30
 GROUP BY i_item_id, i_item_desc, i_current_price
 ORDER BY i_item_id
 LIMIT 100
+;
+END

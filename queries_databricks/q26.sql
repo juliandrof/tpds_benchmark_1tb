@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_id,
   avg(cs_quantity) agg1,
@@ -17,3 +22,5 @@ WHERE cs_sold_date_sk = d_date_sk AND
 GROUP BY i_item_id
 ORDER BY i_item_id
 LIMIT 100
+;
+END

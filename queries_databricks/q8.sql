@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   s_store_name,
   sum(ss_net_profit)
@@ -85,3 +90,5 @@ WHERE ss_store_sk = s_store_sk
 GROUP BY s_store_name
 ORDER BY s_store_name
 LIMIT 100
+;
+END

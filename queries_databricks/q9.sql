@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   CASE WHEN (SELECT count(*)
   FROM store_sales
@@ -46,3 +51,5 @@ SELECT
   WHERE ss_quantity BETWEEN 81 AND 100) END bucket5
 FROM reason
 WHERE r_reason_sk = 1
+;
+END

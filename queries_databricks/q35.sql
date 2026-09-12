@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   ca_state,
   cd_gender,
@@ -44,3 +49,5 @@ GROUP BY ca_state, cd_gender, cd_marital_status, cd_dep_count,
 ORDER BY ca_state, cd_gender, cd_marital_status, cd_dep_count,
   cd_dep_employed_count, cd_dep_college_count
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_item_id,
   i_item_desc,
@@ -31,3 +36,5 @@ WHERE d1.d_quarter_name = '2001Q1'
 GROUP BY i_item_id, i_item_desc, s_state
 ORDER BY i_item_id, i_item_desc, s_state
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH year_total AS (
   SELECT
     c_customer_id customer_id,
@@ -118,3 +123,5 @@ ORDER BY
   t_s_secyear.customer_login,
   t_s_secyear.customer_email_address
 LIMIT 100
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH wscs AS
 ( SELECT
     sold_date_sk,
@@ -79,3 +84,5 @@ FROM
   WHERE date_dim.d_week_seq = wswscs.d_week_seq AND d_year = 2001 + 1) z
 WHERE d_week_seq1 = d_week_seq2 - 53
 ORDER BY d_week_seq1
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT sum(ss_quantity)
 FROM store_sales, store, customer_demographics, customer_address, date_dim
 WHERE s_store_sk = ss_store_sk
@@ -61,3 +66,5 @@ WHERE s_store_sk = ss_store_sk
         AND ss_net_profit BETWEEN 50 AND 25000
       )
   )
+;
+END

@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH sr_items AS
 (SELECT
     i_item_id item_id,
@@ -54,3 +59,5 @@ WHERE sr_items.item_id = cr_items.item_id
   AND sr_items.item_id = wr_items.item_id
 ORDER BY sr_items.item_id, sr_item_qty
 LIMIT 100
+;
+END

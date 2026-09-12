@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   w_warehouse_name,
   w_warehouse_sq_ft,
@@ -238,3 +243,5 @@ GROUP BY
   ship_carriers, year
 ORDER BY w_warehouse_name
 LIMIT 100
+;
+END

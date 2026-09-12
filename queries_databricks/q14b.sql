@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 WITH cross_items AS
 (SELECT i_item_sk ss_item_sk
   FROM item,
@@ -93,3 +98,5 @@ WHERE this_year.i_brand_id = last_year.i_brand_id
   AND this_year.i_category_id = last_year.i_category_id
 ORDER BY this_year.channel, this_year.i_brand_id, this_year.i_class_id, this_year.i_category_id
 LIMIT 100
+;
+END

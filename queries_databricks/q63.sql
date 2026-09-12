@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT *
 FROM (SELECT
   i_manager_id,
@@ -29,3 +34,5 @@ ORDER BY i_manager_id
   , avg_monthly_sales
   , sum_sales
 LIMIT 100
+;
+END

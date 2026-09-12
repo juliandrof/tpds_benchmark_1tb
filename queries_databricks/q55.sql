@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT
   i_brand_id brand_id,
   i_brand brand,
@@ -11,3 +16,5 @@ WHERE d_date_sk = ss_sold_date_sk
 GROUP BY i_brand, i_brand_id
 ORDER BY ext_price DESC, brand_id
 LIMIT 100
+;
+END

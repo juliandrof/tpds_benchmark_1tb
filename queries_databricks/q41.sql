@@ -1,3 +1,8 @@
+BEGIN
+EXECUTE IMMEDIATE 'SET use_cached_result = false';
+USE CATALOG tpcds1tb;
+USE SCHEMA benchmark;
+
 SELECT DISTINCT (i_product_name)
 FROM item i1
 WHERE i_manufact_id BETWEEN 738 AND 738 + 40
@@ -47,3 +52,5 @@ WHERE (i_manufact = i1.i_manufact AND
       )))) > 0
 ORDER BY i_product_name
 LIMIT 100
+;
+END
